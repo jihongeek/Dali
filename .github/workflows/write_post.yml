@@ -4,7 +4,8 @@
 name: Write Posts to Agit!
 on:
   schedule: 
-    - cron : '40 14 * * 4'
+    - cron : '50 14 * * 4'
+  workflow_dispatch:
   
 jobs:
   build:
@@ -26,5 +27,5 @@ jobs:
       env:
         FB_WEEKDAY: 4
         FB_HOUR: 00
-        FB_MIN: 00
+        FB_MIN: 20
         AGIT_TOKEN : ${{ secrets.AGIT_TOKEN }}
