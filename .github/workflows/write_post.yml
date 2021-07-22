@@ -27,5 +27,5 @@ jobs:
       env:
         FB_WEEKDAY: 4
         FB_HOUR: 00
-        FB_MIN: 20
+        FB_MINUTE: 20
         AGIT_TOKEN : ${{ secrets.AGIT_TOKEN }}
