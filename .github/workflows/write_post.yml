@@ -4,8 +4,8 @@
 name: Write Posts to Agit!
 on:
   schedule: 
-    - cron : '30 14 * * 4'
-
+    - cron : '40 14 * * 4'
+  
 jobs:
   build:
     runs-on: ubuntu-latest
