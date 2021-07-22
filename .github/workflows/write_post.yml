@@ -4,7 +4,8 @@
 name: Write Posts to Agit!
 on:
   schedule: 
-    - cron : '00 15 * * 4'
+    - cron : '30 11 * * 5'
+    - cron : '0 6 * * 4'
   workflow_dispatch:
   
 jobs:
@@ -26,6 +27,6 @@ jobs:
         python dali.py
       env:
         FB_WEEKDAY: 4
-        FB_HOUR: 00
-        FB_MINUTE: 30
+        FB_HOUR: 21
+        FB_MINUTE: 0
         AGIT_TOKEN : ${{ secrets.AGIT_TOKEN }}
