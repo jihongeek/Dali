@@ -9,11 +9,10 @@ feedbackWeekday = int(os.getenv('FB_WEEKDAY'))
 feedbackHour = int(os.getenv('FB_HOUR'))
 feedbackMinute = int(os.getenv('FB_MINUTE'))
 
-weekdays = [0,1,2,3,4,5,6]
 nowTime = datetime.datetime.now(timezone("Asia/Seoul"))
 nowTime = datetime.datetime(nowTime.year,nowTime.month,nowTime.day,nowTime.hour,nowTime.minute,0)
 
-feedbackTime = nowTime + datetime.timedelta(days = weekdays[feedbackWeekday-nowTime.weekday()]) 
+feedbackTime = nowTime + datetime.timedelta(days = (feedbackWeekday+7-nowTime.weekday())%7) 
 feedbackTime = datetime.datetime(feedbackTime.year,feedbackTime.month,feedbackTime.day,feedbackHour,feedbackMinute)
 feedbackDelta = feedbackTime - nowTime
 
