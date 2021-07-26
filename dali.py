@@ -1,7 +1,8 @@
-import datetime
+import datetime,os,requests
+
 from pytz import timezone
 from glob import glob
-import os,requests
+from re import findall 
 
 token = os.getenv('AGIT_TOKEN')
 
@@ -18,13 +19,14 @@ feedbackDelta = feedbackTime - nowTime
 
 os.chdir("posts")
 posts =  glob("*.md")
-post =f"feedback-{feedbackDelta.days}-{feedbackDelta.seconds//3600}-{(feedbackDelta.seconds%3600)//60}.md" 
-if post in posts:
-    print("ok")
-    with open(post,mode = "r",encoding="UTF-8") as postFile:
-        postContent = {"text" : postFile.read()}
-        requests.post("https://agit.io/webhook/"+token,postContent)
-
+for post in posts:
+    beforeDays,beforeHours = map(int,findall("\d+-\d",post)[0].split("-"))
+    if beforeDays == feedbackDelta.days and feedbackDelta.seconds//3600 <= beforeHours:
+        print("ok")
+        with open(post,mode = "r",encoding="UTF-8") as postFile:
+            postContent = {"text" : postFile.read()}
+            requests.post("https://agit.io/webhook/"+token,postContent)
+         
 
 
 
